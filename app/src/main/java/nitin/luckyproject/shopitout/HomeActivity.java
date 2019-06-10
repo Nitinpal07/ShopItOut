@@ -1,14 +1,23 @@
 package nitin.luckyproject.shopitout;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 //import android.widget.Toolbar;
 import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 public class HomeActivity extends AppCompatActivity {
 
 private Toolbar mtoolbar;
+private FloatingActionButton mfab_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,5 +26,56 @@ private Toolbar mtoolbar;
        mtoolbar =findViewById(R.id.home_toolbar);
        setSupportActionBar(mtoolbar);
        getSupportActionBar().setTitle("Daily Shopping List");
+
+       mfab_btn =findViewById(R.id.fab);
+       mfab_btn.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+                CustomDialog();
+           }
+       });
+    }
+
+
+    private void CustomDialog(){
+        AlertDialog.Builder mydialog =new AlertDialog.Builder(HomeActivity.this);
+        LayoutInflater infalter=LayoutInflater.from(HomeActivity.this);
+        View myview= infalter.inflate(R.layout.input_data,null);
+
+        final AlertDialog dialog = mydialog.create();
+
+        dialog.setView(myview);
+
+        final EditText type= myview.findViewById(R.id.item_type);
+        final EditText amount=myview.findViewById(R.id.item_amount);
+        final EditText note =myview.findViewById(R.id.item_note);
+        Button btnsave=myview.findViewById(R.id.btn_save_item);
+
+        btnsave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String mtype=type.getText().toString().trim();
+                String mamount=amount.getText().toString().trim();
+                String mnote=note.getText().toString().trim();
+
+                if(TextUtils.isEmpty(mtype)){
+                    type.setError("REQUIRED FIELD..");
+                    return;
+                }
+                if(TextUtils.isEmpty(mamount)){
+                    amount.setError("REQUIRED FIELD..");
+                    return;
+                }
+                if(TextUtils.isEmpty(mnote)){
+                    note.setError("REQUIRED FIELD..");
+                    return;
+                }
+
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 }
