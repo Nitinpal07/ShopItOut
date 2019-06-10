@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1006434229175",
+    "firebase_url": "https://shopitout-94b3a.firebaseio.com",
+    "project_id": "shopitout-94b3a",
+    "storage_bucket": "shopitout-94b3a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1006434229175:android:ebbef264a7360bb5",
+        "android_client_info": {
+          "package_name": "nitin.luckyproject.shopitout"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1006434229175-c9kqb64ut9hh9vlr970lj0ne5kmrnk7t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nitin.luckyproject.shopitout",
+            "certificate_hash": "3f2e4deb8bb70c962869c997b2c43dbbf3becb0d"
+          }
+        },
+        {
+          "client_id": "1006434229175-b66jed6tj392ddu4hfb7gtdrde8b6vqu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLKObputxSRhsxMJOC7d-hkOm_T9_0Asw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1006434229175-b66jed6tj392ddu4hfb7gtdrde8b6vqu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

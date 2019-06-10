@@ -10,4 +10,9 @@
     <string name="already_have_acc">Already have account?Sign in here</string>
     <string name="total_amount">TOTAL AMOUNT</string>
     <string name="amount">00000</string>
+    <string name="addshoppinglist">ADD SHOPPING LIST</string>
+    <string name="type">TYPE:</string>
+    <string name="item_amount">AMOUNT:</string>
+    <string name="note">NOTE:</string>
+    <string name="save">SAVE</string>
 </resources>
