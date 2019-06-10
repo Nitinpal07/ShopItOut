@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">ShopItOut</string>
+    <string name="login">LOG IN</string>
+    <string name="email">EMAIL</string>
+    <string name="password">PASSWORD</string>
+    <string name="log_in">LOG IN</string>
+    <string name="dont_have_acc">Dont have account?Sign up here</string>
+    <string name="reg">REGISTRATION</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="already_have_acc">Already have account?Sign in here</string>
+
 </resources>
