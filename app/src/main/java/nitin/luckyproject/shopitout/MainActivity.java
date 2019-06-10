@@ -2,8 +2,8 @@ package nitin.luckyproject.shopitout;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -34,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
         pass = findViewById(R.id.email_password);
         btnlogin =findViewById(R.id.btn_login);
         signUp=findViewById(R.id.sign_up);
-         mauth = FirebaseAuth.getInstance();
+        mauth = FirebaseAuth.getInstance();
+
          if(mauth.getCurrentUser()!=null){
              startActivity(new Intent(getApplicationContext(),HomeActivity.class));
          }

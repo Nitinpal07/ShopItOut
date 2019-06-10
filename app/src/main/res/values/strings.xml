@@ -8,5 +8,6 @@
     <string name="reg">REGISTRATION</string>
     <string name="sign_up">SIGN UP</string>
     <string name="already_have_acc">Already have account?Sign in here</string>
-
+    <string name="total_amount">TOTAL AMOUNT</string>
+    <string name="amount">00000</string>
 </resources>
