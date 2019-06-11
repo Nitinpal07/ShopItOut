@@ -101,7 +101,6 @@ private FloatingActionButton mfab_btn;
                  String id= mDatabaseReference.push().getKey();
                 //date format
 
-
                 String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
                 Data data = new Data(mtype,ammount,mnote,date,id);
