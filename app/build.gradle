@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "nitin.luckyproject.shopitout"
-        minSdkVersion 16
+        minSdkVersion 24
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -31,7 +31,7 @@ dependencies {
     implementation  'androidx.cardview:cardview:1.0.0'
     implementation  'androidx.recyclerview:recyclerview:1.1.0-alpha06'
     implementation 'com.google.android.material:material:1.0.0'
-
+    implementation 'com.google.firebase:firebase-database:17.0.0'
 
 }
 apply plugin: 'com.google.gms.google-services'
