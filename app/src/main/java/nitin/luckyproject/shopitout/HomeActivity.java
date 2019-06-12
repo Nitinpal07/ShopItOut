@@ -17,12 +17,16 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.util.Date;
 import java.util.Locale;
@@ -32,15 +36,18 @@ import nitin.luckyproject.shopitout.Model.Data;
 
 public class HomeActivity extends AppCompatActivity {
 
+    private Query query;
 
 private DatabaseReference mDatabaseReference;
 private FirebaseAuth mFirebaseauth;
 private Toolbar mtoolbar;
 private FloatingActionButton mfab_btn;
+private RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homeactivity);
+
 
 
         mtoolbar =findViewById(R.id.home_toolbar);
@@ -51,6 +58,33 @@ private FloatingActionButton mfab_btn;
         FirebaseUser muser= mFirebaseauth.getCurrentUser();
         String uid= muser.getUid();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("Daily Shopping List").child("Shopping List").child(uid);
+
+        recyclerView =findViewById(R.id.recycler_home);
+        LinearLayoutManager layoutManager =new LinearLayoutManager(this);
+        layoutManager.setStackFromEnd(true);
+        layoutManager.setReverseLayout(true);
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
+
+        mDatabaseReference.keepSynced(true);
+
+        
+        query = FirebaseDatabase.getInstance()
+                .getReference()
+                .child("Shopping List")
+                .limitToLast(50);
+
+        FirebaseRecyclerOptions<Data> options = new FirebaseRecyclerOptions.Builder<Data>()
+                .setQuery(query,Data.class)
+                .build();
+
+
+
+
+
+
+
 
 
        mfab_btn =findViewById(R.id.fab);
@@ -114,6 +148,9 @@ private FloatingActionButton mfab_btn;
 
         dialog.show();
     }
+
+
+
 
 
 }

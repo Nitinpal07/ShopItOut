@@ -53,6 +53,7 @@
                 android:padding="5dp"
                 android:textColor="#FF40"
                 android:maxLines="1"
+                android:id="@+id/note"
                 />
         </RelativeLayout>
         <RelativeLayout
