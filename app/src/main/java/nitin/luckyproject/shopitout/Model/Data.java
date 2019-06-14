@@ -18,7 +18,7 @@ public class Data {
         this.id = id;
     }
 
-    public String getType() {
+    public  String getType() {
         return type;
     }
 
@@ -26,7 +26,7 @@ public class Data {
         this.type = type;
     }
 
-    public int getAmount() {
+    public  int getAmount() {
         return amount;
     }
 
@@ -34,7 +34,7 @@ public class Data {
         this.amount = amount;
     }
 
-    public String getNote() {
+    public  String getNote() {
         return note;
     }
 
@@ -42,7 +42,7 @@ public class Data {
         this.note = note;
     }
 
-    public String getDate() {
+    public  String getDate() {
         return date;
     }
 
