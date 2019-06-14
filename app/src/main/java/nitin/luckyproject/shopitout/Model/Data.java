@@ -26,8 +26,8 @@ public class Data {
         this.type = type;
     }
 
-    public  int getAmount() {
-        return amount;
+    public  String getAmount() {
+        return String.valueOf(amount);
     }
 
     public void setAmount(int amount) {
