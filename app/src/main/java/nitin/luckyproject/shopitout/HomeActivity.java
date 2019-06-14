@@ -4,7 +4,6 @@ import android.content.Context;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,11 +45,9 @@ public class HomeActivity extends AppCompatActivity {
     ArrayList<Data> list;
     MyAdapter adapter;
     FloatingActionButton mfab_btn;
-    private Toolbar mtoolbar;
-    private FirebaseAuth mFirebaseauth;
-    private DatabaseReference mDatabaseReference;
-    private Query query;
-    private FirebaseRecyclerOptions<Data> options;
+    Toolbar mtoolbar;
+    FirebaseAuth mFirebaseauth;
+
 
 
     public HomeActivity() {
@@ -67,7 +64,7 @@ public class HomeActivity extends AppCompatActivity {
         setSupportActionBar(mtoolbar);
         getSupportActionBar().setTitle("Daily Shopping List");
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_home);
+        recyclerView =  findViewById(R.id.recycler_home);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
@@ -75,16 +72,16 @@ public class HomeActivity extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                list = new ArrayList<Data>();
+                list = new ArrayList<>();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
 
                         String type = dataSnapshot1.child("type").getValue(String.class);
                         String date = dataSnapshot1.child("date").getValue(String.class);
-                        Object amount = dataSnapshot1.child("amount").getValue();
+                        String amount = dataSnapshot1.child("amount").getValue(String.class);
                         String note = dataSnapshot1.child("note").getValue(String.class);
                         String id = dataSnapshot1.child("id").getValue(String.class);
 
-                        Data p = new Data(type, Integer.parseInt(amount.toString()), note, date, id);
+                        Data p = new Data(type, amount, note, date, id);
                         list.add(p);
 
 
@@ -97,6 +94,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(HomeActivity.this, "Opsss.... Something is wrong", Toast.LENGTH_SHORT).show();
             }
+
         });
 
         mfab_btn = findViewById(R.id.fab);
@@ -111,9 +109,9 @@ public class HomeActivity extends AppCompatActivity {
 
     private void CustomDialog() {
         mFirebaseauth = FirebaseAuth.getInstance();
-        FirebaseUser muser = mFirebaseauth.getCurrentUser();
-        String uid = muser.getUid();
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference("Daily Shopping List").child("Shopping List").child(uid);
+
+
+        reference = FirebaseDatabase.getInstance().getReference("Daily Shopping List").child("Shopping List").push();
 
         AlertDialog.Builder mydialog = new AlertDialog.Builder(HomeActivity.this);
         LayoutInflater infalter = LayoutInflater.from(HomeActivity.this);
@@ -136,7 +134,7 @@ public class HomeActivity extends AppCompatActivity {
                 String mtype = type.getText().toString().trim();
                 String mamount = amount.getText().toString().trim();
                 String mnote = note.getText().toString().trim();
-                int ammount = Integer.parseInt(mamount);
+
                 if (TextUtils.isEmpty(mtype)) {
                     type.setError("REQUIRED FIELD..");
                     return;
@@ -149,14 +147,14 @@ public class HomeActivity extends AppCompatActivity {
                     note.setError("REQUIRED FIELD..");
                     return;
                 }
-                String id = mDatabaseReference.push().getKey();
+                String id = reference.push().getKey();
                 //date format
 
                 String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
-                Data data = new Data(mtype, ammount, mnote, date, id);
+                Data data = new Data(mtype, mamount, mnote, date, id);
 
-                mDatabaseReference.setValue(data);
+                reference.setValue(data);
                 Toast.makeText(HomeActivity.this, "STORED TO DATABASE", Toast.LENGTH_LONG).show();
 
                 dialog.dismiss();
@@ -172,7 +170,7 @@ public class HomeActivity extends AppCompatActivity {
         Context context;
         ArrayList<Data> datas;
 
-        public MyAdapter(Context c, ArrayList<Data> p) {
+        MyAdapter(Context c, ArrayList<Data> p) {
             context = c;
             datas = p;
         }
@@ -200,10 +198,10 @@ public class HomeActivity extends AppCompatActivity {
         class MyViewHolder extends RecyclerView.ViewHolder {
             TextView type, amount, note, date;
 
-            public MyViewHolder(View itemView) {
+            MyViewHolder(View itemView) {
                 super(itemView);
-                type = (TextView) itemView.findViewById(R.id.type);
-                amount = (TextView) itemView.findViewById(R.id.amount_item);
+                type =  itemView.findViewById(R.id.type);
+                amount =  itemView.findViewById(R.id.amount_item);
                 note = itemView.findViewById(R.id.note);
                 date = itemView.findViewById(R.id.date);
             }

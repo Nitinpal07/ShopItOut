@@ -1,16 +1,16 @@
 package nitin.luckyproject.shopitout.Model;
 
 public class Data {
-    String type;
-    int amount;
-    String note;
-    String date;
-    String id;
+    private String type;
+    private String amount;
+    private String note;
+    private String date;
+    private String id;
 
     public Data(){
 
     }
-    public Data(String type, int amount, String note, String date, String id) {
+    public Data(String type, String amount, String note, String date, String id) {
         this.type = type;
         this.amount = amount;
         this.note = note;
@@ -27,10 +27,10 @@ public class Data {
     }
 
     public  String getAmount() {
-        return String.valueOf(amount);
+        return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
