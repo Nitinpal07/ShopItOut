@@ -16,4 +16,8 @@
     <string name="note">NOTE:</string>
     <string name="save">SAVE</string>
     <string name="delete">DELETE</string>
+    <string name="update">UPDATE</string>
+    <string name="update_data">UPDATE SHOPPING LIST</string>
+
+
 </resources>

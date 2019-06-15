@@ -49,6 +49,11 @@ public class HomeActivity extends AppCompatActivity {
     FirebaseAuth mFirebaseauth;
     TextView totalamount;
 
+    String type;
+    String amount;
+    String note;
+    private String postkey;
+
 
     public HomeActivity() {
     }
@@ -189,11 +194,24 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
             holder.type.setText(datas.get(position).getType());
             holder.amount.setText(datas.get(position).getAmount());
             holder.note.setText(datas.get(position).getNote());
             holder.date.setText(datas.get(position).getDate());
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    postkey = reference.getRef().getKey();
+                    type = datas.get(position).getType();
+                    amount=datas.get(position).getAmount();
+                    note=datas.get(position).getNote();
+                    updatedata();
+                }
+            });
+
 
         }
 
@@ -214,6 +232,48 @@ public class HomeActivity extends AppCompatActivity {
             }
 
         }
+    }
+
+    public void updatedata(){
+        AlertDialog.Builder mydialog = new AlertDialog.Builder(HomeActivity.this);
+        LayoutInflater infalter = LayoutInflater.from(HomeActivity.this);
+        View myview = infalter.inflate(R.layout.updateinput_field, null);
+        AlertDialog dialog = mydialog.create();
+
+        dialog.setView(myview);
+        final EditText medittype = myview.findViewById(R.id.item_type_update);
+        final EditText meditnote =myview.findViewById(R.id.item_note_update);
+        final EditText meditamount =myview.findViewById(R.id.item_amount_update);
+
+        medittype.setText(type);
+        medittype.setSelection(type.length());
+        meditnote.setText(note);
+        meditnote.setSelection(note.length());
+        meditamount.setText(amount);
+        meditamount.setSelection(amount.length());
+
+
+       Button btnupdate =myview.findViewById(R.id.btn_update_item);
+       Button btndelete =myview.findViewById(R.id.btn_delete_item);
+
+       btnupdate.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+
+               String type= medittype.getText().toString().trim();
+               String amount =meditamount.getText().toString().trim();
+               String note =meditnote.getText().toString().trim();
+
+           }
+       });
+       btndelete.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+
+           }
+       });
+
+        dialog.show();
     }
 
 }
