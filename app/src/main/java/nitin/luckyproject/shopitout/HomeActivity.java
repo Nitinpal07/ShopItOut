@@ -47,7 +47,7 @@ public class HomeActivity extends AppCompatActivity {
     FloatingActionButton mfab_btn;
     Toolbar mtoolbar;
     FirebaseAuth mFirebaseauth;
-
+    TextView totalamount;
 
 
     public HomeActivity() {
@@ -67,12 +67,14 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView =  findViewById(R.id.recycler_home);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        totalamount =findViewById(R.id.amount);
 
         reference = FirebaseDatabase.getInstance().getReference().child("Daily Shopping List").child("Shopping List").getRef();
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 list = new ArrayList<>();
+                int totalsumamount=0;
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
 
                         String type = dataSnapshot1.child("type").getValue(String.class);
@@ -81,9 +83,14 @@ public class HomeActivity extends AppCompatActivity {
                         String note = dataSnapshot1.child("note").getValue(String.class);
                         String id = dataSnapshot1.child("id").getValue(String.class);
 
+
                         Data p = new Data(type, amount, note, date, id);
                         list.add(p);
 
+                    totalsumamount+= Integer.parseInt(p.getAmount());
+
+                    String totalsum = String.valueOf(totalsumamount);
+                    totalamount.setText(totalsum);
 
                 }
                 adapter = new MyAdapter(HomeActivity.this, list);

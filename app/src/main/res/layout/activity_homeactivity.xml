@@ -22,7 +22,9 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 app:cardElevation="10dp"
                 app:cardMaxElevation="10dp"
                 app:cardBackgroundColor="@color/colorPrimary">
@@ -39,7 +41,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/total_amount"
-                            android:padding="10dp"/>
+                            android:padding="10dp"
+                            android:textAppearance="?android:textAppearanceLarge"/>
                     </RelativeLayout>
                     <RelativeLayout
                         android:layout_width="0dp"
@@ -50,12 +53,72 @@
                             android:layout_height="wrap_content"
                             android:text="@string/amount"
                             android:padding="10dp"
-                            android:id="@+id/amount"/>
+                            android:id="@+id/amount"
+                            android:textAppearance="?android:textAppearanceLarge"
+                            android:paddingStart="60dp"
+                            android:paddingEnd="60dp"
+                            />
                     </RelativeLayout>
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:cardElevation="10dp"
+                app:cardMaxElevation="10dp"
+                app:cardBackgroundColor="#ffa">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="10dp"
+                    >
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        >
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="DATE:"
+                            android:textAppearance="?android:textAppearanceSmall"
+                            android:layout_marginLeft="10dp"
+                            />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        >
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/type"
+                            android:textAppearance="?android:textAppearanceSmall"
+                             android:layout_marginLeft="50dp"
+                            />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="4"
+                        >
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/item_amount"
+                            android:textAppearance="?android:textAppearanceSmall"
+                             android:layout_marginLeft="20dp"
+                            />
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
