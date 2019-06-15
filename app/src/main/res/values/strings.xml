@@ -15,4 +15,5 @@
     <string name="item_amount">AMOUNT:</string>
     <string name="note">NOTE:</string>
     <string name="save">SAVE</string>
+    <string name="delete">DELETE</string>
 </resources>
